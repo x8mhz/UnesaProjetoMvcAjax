@@ -1,0 +1,62 @@
+﻿@model IEnumerable<UnesaProjetoMvcAjax.Models.Produto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@DateTime.Now</h2>
+<h3>Nesse exemplo sem o uso do Ajax toda a página é carregada, exemplo disso é a mudança de horário a cada pesquisada</h3>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<p>
+    Pesquisar
+    @using (Html.BeginForm("Index", "Produto", FormMethod.Get))
+    {
+        @Html.TextBox("categoria")
+        <input type="submit" value="Pesquisar" />
+    }
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valor)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categoria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantidade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Valor)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
